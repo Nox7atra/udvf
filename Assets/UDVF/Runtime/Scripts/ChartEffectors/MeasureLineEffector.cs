@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace UDVF.Runtime.Scripts.ChartEffectors
 {
-    [RequireComponent(typeof(CoordinateChart))]
+    [RequireComponent(typeof(CoordinateChartRenderer))]
     public class MeasureLineEffector : ChartEffector
     {
         private const float _LineOffset = 3;
@@ -16,30 +16,33 @@ namespace UDVF.Runtime.Scripts.ChartEffectors
         [SerializeField] private Color _Color = Color.grey;
         [SerializeField] private int _SoringOrder = -1;
         [SerializeField, Range(0.05f, 0.5f)] private float _Step = 0.1f;
-        public override List<ChartRenderCommand> GenerateRenderCommands(ChartBase chartBase)
+        public override List<ChartRenderCommand> GenerateRenderCommands(ChartBaseRenderer chartBaseRenderer)
         {
             var result = new List<ChartRenderCommand>();
             int count = (int) (_LineOffset / _Step);
             result.Add(new LineCommand(
-                chartBase.GetRealChartPos(new Vector2(-_LineOffset, 0)),
-                chartBase.GetRealChartPos(new Vector2(_LineOffset, 0)),
+                chartBaseRenderer.GetRealChartPos(new Vector2(-_LineOffset, 0)),
+                chartBaseRenderer.GetRealChartPos(new Vector2(_LineOffset, 0)),
                 _Size * 2,
-                _Color
-            ) {SortingOrder = _SoringOrder});
+                _Color,
+                _SoringOrder
+            ));
             result.Add(new LineCommand(
-                chartBase.GetRealChartPos(new Vector2(0, -_LineOffset)),
-                chartBase.GetRealChartPos(new Vector2(0, _LineOffset)),
+                chartBaseRenderer.GetRealChartPos(new Vector2(0, -_LineOffset)),
+                chartBaseRenderer.GetRealChartPos(new Vector2(0, _LineOffset)),
                 _Size * 2,
-                _Color
-            ) {SortingOrder = _SoringOrder});
+                _Color,
+                _SoringOrder
+            ) );
             for (int i = 0; i < count; i++)
             {
                 result.Add(new LineCommand(
-                    chartBase.GetRealChartPos(new Vector2(-_LineOffset, (i - count / 2 )*_Step)),
-                    chartBase.GetRealChartPos(new Vector2(_LineOffset, (i - count / 2 )*_Step)),
+                    chartBaseRenderer.GetRealChartPos(new Vector2(-_LineOffset, (i - count / 2 )*_Step)),
+                    chartBaseRenderer.GetRealChartPos(new Vector2(_LineOffset, (i - count / 2 )*_Step)),
                     _Size,
-                    _Color
-                ) {SortingOrder = _SoringOrder});
+                    _Color,
+                    _SoringOrder
+                ) );
             }
             return result;
         }

@@ -16,7 +16,7 @@ namespace UDVF.Runtime.Scripts.Charts.RenderCommands.PointCommands
             vh.AddTriangle(vertexOffset + 2, vertexOffset + 3, vertexOffset);
         }
 
-        public SquarePointCommand(Vector2 pos, float size, Color color) : base(pos, size, color)
+        public SquarePointCommand(Vector2 pos, float size, Color color, int sortingOrder) : base(pos, size, color, sortingOrder)
         {
         }
     }

@@ -6,7 +6,7 @@ namespace UDVF.Runtime.Scripts.Charts.RenderCommands.PointCommands
 {
     public class CirclePointCommand : PointCommand
     {
-        public CirclePointCommand(Vector2 pos, float size, Color color) : base(pos, size, color)
+        public CirclePointCommand(Vector2 pos, float size, Color color, int sortingOrder) : base(pos, size, color, sortingOrder)
         {
         }
 

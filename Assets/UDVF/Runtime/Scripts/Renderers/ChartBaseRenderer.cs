@@ -9,7 +9,7 @@ namespace UDVF.Runtime.Scripts.Charts
 {
    [ExecuteInEditMode]
    [RequireComponent(typeof(CanvasRenderer))]
-   public abstract class ChartBase : MaskableGraphic
+   public abstract class ChartBaseRenderer : MaskableGraphic
    {
       [Space(30)]
       [SerializeField] protected ChartPointCommandType _chartPointType;
@@ -61,5 +61,4 @@ namespace UDVF.Runtime.Scripts.Charts
          SetVerticesDirty();
       }
    }
-   
 }

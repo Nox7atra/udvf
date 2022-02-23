@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 405996848278193904}
   - component: {fileID: 405996848278193903}
-  - component: {fileID: 405996848278193902}
-  - component: {fileID: 405996848278193905}
   m_Layer: 5
   m_Name: chart
   m_TagString: Untagged
@@ -46,61 +44,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405996848278193907}
   m_CullTransparentMesh: 1
---- !u!114 &405996848278193902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405996848278193907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab6e5a6731a54620952924e97bd2d41d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  _chartPointType: 0
-  _MinZoom: 0.2
-  _MaxZoom: 15
-  _DragSensitivity: 0.1
-  _ScrollSensitivity: 5
-  _CurrentZoom: 0.9
-  _Offset: {x: 0, y: 0}
-  _BarSize: 5
-  _BarColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
---- !u!114 &405996848278193905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405996848278193907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e7cf5cbc709b9d418d91489486ceff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _DataMinGenerate: 10
-  _DataMaxGenerate: 25
-  _TestData:
-  - {x: 9.767747, y: 61.652096}
-  - {x: 10.076427, y: 76.45005}
-  - {x: 20.977043, y: 68.34933}
-  - {x: 33.79144, y: 64.76851}
-  - {x: 33.96545, y: 91.51343}
-  - {x: 46.913273, y: 25.692207}
-  - {x: 51.146667, y: 77.58365}
-  - {x: 52.750153, y: 94.93268}
-  - {x: 60.824986, y: 34.311287}
-  - {x: 61.184544, y: 36.606056}
-  - {x: 92.557335, y: 85.995636}
 --- !u!1 &405996849764762567
 GameObject:
   m_ObjectHideFlags: 0
