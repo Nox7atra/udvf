@@ -1,0 +1,14 @@
+{
+  "name": "com.nox7atra.udvf",
+  "displayName": "UDVF",
+  "version": "1.0.0",
+  "description": "Unity Data Visualization Framework",
+  "keywords": [
+    "unity",
+    "charts",
+	"data",
+	"visualization"
+  ],
+  "author": "Nox7atra",
+  "license": "MIT"
+}
