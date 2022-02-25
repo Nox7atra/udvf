@@ -11,25 +11,23 @@ namespace UDVF.Runtime.Scripts.ChartEffectors
     [RequireComponent(typeof(CoordinateChartRenderer))]
     public class MeasureLineEffector : ChartEffector
     {
-        private const float _LineOffset = 3;
+        private const float _LineOffset = 1000;
         [SerializeField] private float _Size = 1;
         [SerializeField] private Color _Color = Color.grey;
         [SerializeField] private int _SoringOrder = -1;
-        [SerializeField, Range(0.05f, 0.5f)] private float _Step = 0.1f;
+        [SerializeField, Range(5f, 100)] private float _Step = 5f;
         public override List<ChartRenderCommand> GenerateRenderCommands(ChartBaseRenderer chartBaseRenderer)
         {
             var result = new List<ChartRenderCommand>();
             int count = (int) (_LineOffset / _Step);
-            result.Add(new LineCommand(
-                chartBaseRenderer.GetRealChartPos(new Vector2(-_LineOffset, 0)),
-                chartBaseRenderer.GetRealChartPos(new Vector2(_LineOffset, 0)),
+            result.Add(new LineCommand(new Vector2(-_LineOffset, 0),
+                new Vector2(_LineOffset, 0),
                 _Size * 2,
                 _Color,
                 _SoringOrder
             ));
-            result.Add(new LineCommand(
-                chartBaseRenderer.GetRealChartPos(new Vector2(0, -_LineOffset)),
-                chartBaseRenderer.GetRealChartPos(new Vector2(0, _LineOffset)),
+            result.Add(new LineCommand(new Vector2(0, -_LineOffset),
+                new Vector2(0, _LineOffset),
                 _Size * 2,
                 _Color,
                 _SoringOrder
@@ -37,8 +35,8 @@ namespace UDVF.Runtime.Scripts.ChartEffectors
             for (int i = 0; i < count; i++)
             {
                 result.Add(new LineCommand(
-                    chartBaseRenderer.GetRealChartPos(new Vector2(-_LineOffset, (i - count / 2 )*_Step)),
-                    chartBaseRenderer.GetRealChartPos(new Vector2(_LineOffset, (i - count / 2 )*_Step)),
+                    new Vector2(-_LineOffset, (i - count / 2 )*_Step),
+                    new Vector2(_LineOffset, (i - count / 2 )*_Step),
                     _Size,
                     _Color,
                     _SoringOrder

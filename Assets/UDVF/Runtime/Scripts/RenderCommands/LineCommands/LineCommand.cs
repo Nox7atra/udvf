@@ -1,3 +1,4 @@
+using UDVF.Runtime.Scripts.Helpers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,14 +22,9 @@ namespace UDVF.Runtime.Scripts.Charts.RenderCommands.LineCommands
 
         public override void Render(VertexHelper vh)
         {
-            var vertexOffset = vh.currentVertCount;
-            var normal = new Vector2(_End.y - _Start.y, _Start.x - _End.x).normalized;
-            vh.AddVert(_Start + normal * _Size, _Color, Vector2.zero);
-            vh.AddVert(_Start - normal * _Size, _Color, Vector2.up);
-            vh.AddVert(_End - normal * _Size, _Color, Vector2.one);
-            vh.AddVert(_End + normal * _Size, _Color, Vector2.right);
-            vh.AddTriangle(vertexOffset, vertexOffset + 1, vertexOffset + 2);
-            vh.AddTriangle(vertexOffset + 2, vertexOffset + 3, vertexOffset);
+            _Start = _TransformCoords.Invoke(_Start);
+            _End = _TransformCoords.Invoke(_End);
+            MeshGenerator.RenderLine(vh, _Start, _End, _Size, _Color);
         }
     }
 }

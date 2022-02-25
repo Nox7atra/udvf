@@ -11,15 +11,12 @@ namespace UDVF.Runtime.Scripts.Charts
    [RequireComponent(typeof(CanvasRenderer))]
    public abstract class ChartBaseRenderer : MaskableGraphic
    {
-      [Space(30)]
-      [SerializeField] protected ChartPointCommandType _chartPointType;
-
       protected Vector3[] _CornersArray = new Vector3[4];
       protected List<ChartRenderCommand> _RenderBuffer 
          = new List<ChartRenderCommand>();
       public void UpdateData()
       {
-         SetVerticesDirty();
+         SetAllDirty();
       }
       protected override void OnPopulateMesh(VertexHelper vh)
       {
@@ -28,13 +25,18 @@ namespace UDVF.Runtime.Scripts.Charts
          _RenderBuffer.Clear();
          ProcessBuffer();
          ProcessEffectors();
+         Render(vh);
+      }
+
+      protected virtual void Render(VertexHelper vh)
+      {
          var commands = _RenderBuffer.OrderBy(command => command.SortingOrder);
          foreach (var command in commands)
          {
+            command.SetTransformCoordsFunc(GetRealChartPos);
             command.Render(vh);
          }
       }
-
       private void ProcessEffectors()
       {
          var effectors = GetComponents<ChartEffector>();
@@ -48,11 +50,11 @@ namespace UDVF.Runtime.Scripts.Charts
       }
 
       protected abstract void ProcessBuffer();
-      public virtual Vector2 GetRealChartPos(Vector2 normalizedPos)
+      public virtual Vector2 GetRealChartPos(Vector2 pos)
       {
          return new Vector2(
-            Mathf.LerpUnclamped(_CornersArray[0].x, _CornersArray[2].x, normalizedPos.x),
-            Mathf.LerpUnclamped(_CornersArray[0].y, _CornersArray[2].y, normalizedPos.y)
+            Mathf.LerpUnclamped(_CornersArray[0].x, _CornersArray[2].x, pos.x),
+            Mathf.LerpUnclamped(_CornersArray[0].y, _CornersArray[2].y, pos.y)
          );
       }
       protected override void OnValidate()

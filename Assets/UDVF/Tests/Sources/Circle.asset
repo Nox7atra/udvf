@@ -36,10 +36,10 @@ MonoBehaviour:
     - {x: 85.247406, y: 22.72588}
     - {x: 89.87399, y: 69.52299}
     - {x: 97.30619, y: 41.60475}
-    IsLinesConnected: 0
+    IsLinesConnected: 1
     Style:
-      Size: 5
+      Size: 10
       Color: {r: 1, g: 0.13908578, b: 0.015686274, a: 1}
-      LineSize: 3
-      LineColor: {r: 0.24624825, g: 0, b: 1, a: 1}
+      LineSize: 6
+      LineColor: {r: 1, g: 0.6647551, b: 0, a: 1}
     Type: 1

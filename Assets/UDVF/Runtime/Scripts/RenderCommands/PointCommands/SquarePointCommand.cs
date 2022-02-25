@@ -1,3 +1,4 @@
+using UDVF.Runtime.Scripts.Helpers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +8,8 @@ namespace UDVF.Runtime.Scripts.Charts.RenderCommands.PointCommands
     {
         public override void Render(VertexHelper vh)
         {
-            var vertexOffset = vh.currentVertCount;
-            vh.AddVert(new Vector3(_Position.x - _Size, _Position.y - _Size), _Color, Vector2.zero);
-            vh.AddVert(new Vector3(_Position.x + _Size, _Position.y - _Size), _Color, Vector2.zero);
-            vh.AddVert(new Vector3(_Position.x + _Size, _Position.y + _Size), _Color, Vector2.zero);
-            vh.AddVert(new Vector3(_Position.x - _Size, _Position.y + _Size), _Color, Vector2.zero);
-            vh.AddTriangle(vertexOffset, vertexOffset + 1, vertexOffset + 2);
-            vh.AddTriangle(vertexOffset + 2, vertexOffset + 3, vertexOffset);
+            base.Render(vh);
+            MeshGenerator.RenderSquare(vh, _Position, _Size, _Color);
         }
 
         public SquarePointCommand(Vector2 pos, float size, Color color, int sortingOrder) : base(pos, size, color, sortingOrder)

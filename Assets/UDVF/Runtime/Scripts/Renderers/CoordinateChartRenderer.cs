@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UDVF.Runtime.Scripts.Charts.RenderCommands;
 using UDVF.Runtime.Scripts.Charts.RenderCommands.LineCommands;
+using UDVF.Runtime.Scripts.Helpers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -60,7 +61,6 @@ namespace UDVF.Runtime.Scripts.Charts.CoordinateCharts
                     maxY = value;
                 }
             }
-
             _Min = new Vector2(minX, minY);
             _Min = new Vector2(maxX, maxY);
         }
@@ -76,7 +76,7 @@ namespace UDVF.Runtime.Scripts.Charts.CoordinateCharts
                 {
                     _RenderBuffer.Add(ChartRenderCommand.Create(
                         chartData.Type,
-                        GetRealChartPos(CalcNormal(coordData)),
+                        coordData,
                         chartData.Style.Size,
                         chartData.Style.Color,
                         Constants.PointsSoringOrder + i * Constants.LayerStep));
@@ -85,8 +85,8 @@ namespace UDVF.Runtime.Scripts.Charts.CoordinateCharts
                         if (next.HasValue)
                         {
                             _RenderBuffer.Add(new LineCommand(
-                                GetRealChartPos(CalcNormal(coordData)),
-                                GetRealChartPos(CalcNormal(next.Value)),
+                                coordData,
+                                next.Value,
                                 chartData.Style.LineSize,
                                 chartData.Style.LineColor,
                                 Constants.LineSortingOrder + i * Constants.LayerStep
@@ -109,13 +109,13 @@ namespace UDVF.Runtime.Scripts.Charts.CoordinateCharts
             return result;
         }
 
-        public override Vector2 GetRealChartPos(Vector2 normalizedPos)
+        public override Vector2 GetRealChartPos(Vector2 pos)
         {
-            normalizedPos = new Vector2(
-                normalizedPos.x* _CurrentZoom + (1 -_CurrentZoom) / 2 + _Offset.x,
-                normalizedPos.y* _CurrentZoom + (1 -_CurrentZoom) / 2 + _Offset.y
+            pos = new Vector2(
+                pos.x* _CurrentZoom + (1 -_CurrentZoom) / 2 + _Offset.x,
+                pos.y* _CurrentZoom + (1 -_CurrentZoom) / 2 + _Offset.y
                 );
-            return base.GetRealChartPos(normalizedPos);
+            return base.GetRealChartPos(CalcNormal(pos));
         }
 
         private void SetScale(float scale)

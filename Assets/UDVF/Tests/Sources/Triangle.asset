@@ -36,7 +36,7 @@ MonoBehaviour:
     - {x: 88.888, y: 85.67604}
     IsLinesConnected: 1
     Style:
-      Size: 5
+      Size: 10
       Color: {r: 1, g: 0.015686274, b: 0.5961593, a: 1}
       LineSize: 3
       LineColor: {r: 0.26039934, g: 0, b: 1, a: 1}

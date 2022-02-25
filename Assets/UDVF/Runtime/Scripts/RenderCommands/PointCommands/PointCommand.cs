@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UDVF.Runtime.Scripts.Charts.RenderCommands.PointCommands
 {
@@ -14,6 +15,11 @@ namespace UDVF.Runtime.Scripts.Charts.RenderCommands.PointCommands
             _Size = size;
             _Color = color;
             _SortingOrder = sortingOrder;
+        }
+
+        public override void Render(VertexHelper vh)
+        {
+            _Position = _TransformCoords.Invoke(_Position);
         }
     }
 }
